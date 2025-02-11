@@ -11,7 +11,7 @@ def recommendations():
     if not title:
         return "Por favor, proporciona un título de película usando el parámetro 'title' en la URL.", 400 #mensaje de holder
     
-    # Obtener las recomendaciones
+    # Obtener las recomendaciones seleccionadas
     recommendations = get_recommendations(title)
 
     # Verificar que la función devuelve algo
