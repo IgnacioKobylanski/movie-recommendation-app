@@ -54,5 +54,5 @@ def get_recommendations(title, cosine_sim=cosine_sim):
     # Devolver los títulos de las películas más similares
     return movies['title'].iloc[movie_indices]
 
-# Ejemplo de uso de la función
+# testeo
 print(get_recommendations('The Matrix'))
