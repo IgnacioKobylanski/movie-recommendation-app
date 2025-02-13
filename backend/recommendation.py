@@ -26,7 +26,7 @@ def get_recommendations(title, cosine_sim=cosine_sim):
     # Obtener el índice de la película seleccionada
     idx = movies.index[movies['title'] == title].tolist()
     
-    # Si el título no se encuentra, no continuamos
+    # Si el título no se encuentra, se termina la busqueda
     if not idx:
         return f"La película '{title}' no se encuentra en la base de datos."
     
