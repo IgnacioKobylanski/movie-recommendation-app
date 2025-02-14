@@ -30,7 +30,7 @@ def get_recommendations(title, cosine_sim=cosine_sim):
     if not idx:
         return f"La película '{title}' no se encuentra en la base de datos."
     
-    idx = idx[0]  # Obtener el primer índice
+    idx = idx[0]  # Obtener el 1er índice
     
     # Imprimir el índice para depuración
     print(f"Índice de la película '{title}': {idx}")
