@@ -32,7 +32,7 @@ def get_recommendations(title, cosine_sim=cosine_sim):
     
     idx = idx[0]  # Obtener el 1er índice
     
-    # Imprimir el índice para depuración
+    # Imprimir el índice para depurar
     print(f"Índice de la película '{title}': {idx}")
     
     # Obtener las puntuaciones de similitud entre la película seleccionada y todas las demás
