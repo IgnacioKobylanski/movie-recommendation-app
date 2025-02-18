@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/recommendations')
 def recommendations():
-    # Obtener el parámetro 'title' de la URL
+    # Obtener el parámetro 'title'
     title = request.args.get('title')
 
     if not title:
