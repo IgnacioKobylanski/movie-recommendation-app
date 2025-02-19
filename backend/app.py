@@ -9,7 +9,7 @@ def recommendations():
     title = request.args.get('title')
 
     if not title:
-        return "Por favor, proporciona un título de película usando el parámetro 'title' en la URL.", 400 #mensaje de holder
+        return "Por favor, proporciona un título de película usando el parámetro 'title' en la URL.", 400 #mensaje para el usuario
     
     # Obtener las recomendaciones seleccionadas
     recommendations = get_recommendations(title)
