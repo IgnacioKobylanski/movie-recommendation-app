@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from recommendation import get_recommendations
 
 app = Flask(__name__)
-
+# Pseudo Main
 @app.route('/recommendations')
 def recommendations():
     # Obtener el parámetro 'title'
