@@ -14,7 +14,7 @@ def recommendations():
     # Obtener las recomendaciones seleccionadas
     recommendations = get_recommendations(title)
 
-    # Verificar que la función devuelve algo
+    # Verificar que la función devuelve.
     if isinstance(recommendations, str):
         return recommendations  # En caso de que sea un mensaje de error
 
