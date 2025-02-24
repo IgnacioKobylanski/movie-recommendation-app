@@ -4,16 +4,24 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Datos de ejemplo de películas
 movies = pd.DataFrame({
-    'title': ['The Matrix', 'Interstellar', 'The Dark Knight', 'Inception', 'The Godfather'],
-    'genre': ['Sci-Fi, Action', 'Sci-Fi, Drama', 'Action, Drama', 'Sci-Fi, Action', 'Drama, Crime'],
+    'title': ['The Matrix', 'Interstellar', 'The Dark Knight', 'Inception', 'The Godfather',
+              'Avatar', 'Titanic', 'The Avengers', 'Forrest Gump', 'Joker'],
+    'genre': ['Sci-Fi, Action', 'Sci-Fi, Drama', 'Action, Drama', 'Sci-Fi, Action', 'Drama, Crime',
+              'Sci-Fi, Adventure', 'Romance, Drama', 'Action, Superhero', 'Drama', 'Drama, Crime'],
     'description': [
         'A man discovers that the world is a simulation.',
         'A group of astronauts travels through a wormhole to save Earth.',
         'A vigilante fights crime in Gotham City.',
         'A thief enters the dreams of others to steal secrets.',
-        'The story of a mafia family in New York.'
+        'The story of a mafia family in New York.',
+        'A marine on an alien planet fights for its people.',
+        'A tragic love story aboard a sinking ship.',
+        'Superheroes unite to save the world.',
+        'A man with a low IQ achieves great things in life.',
+        'A failed comedian turns to crime in Gotham City.'
     ]
 })
+
 
 # Convertir las descripciones en vectores numéricos
 tfidf = TfidfVectorizer(stop_words='english')  # Eliminar las palabras comunes
