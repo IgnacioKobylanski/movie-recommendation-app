@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -31,6 +32,38 @@ tfidf_matrix = tfidf.fit_transform(movies['description'])
 cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
 def get_recommendations(title, cosine_sim=cosine_sim):
+    # ✅ Verificar si hay películas en la base de datos
+    if movies.empty:
+        return json.dumps({"error": "❌ La base de datos de películas está vacía."})
+    
+    # ✅ Verificar si la película existe en la base de datos
+    idx = movies.index[movies['title'] == title].tolist()
+    if not idx:
+        return json.dumps({"error": f"❌ La película '{title}' no está en la base de datos."})
+    
+    idx = idx[0]  # Obtener el primer índice válido
+    
+    # ✅ Obtener las puntuaciones de similitud
+    sim_scores = list(enumerate(cosine_sim[idx]))
+    
+    # Ordenar las películas por similitud (más alta primero)
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+    
+    # ✅ Evitar errores si hay menos de 5 películas en la base de datos
+    sim_scores = sim_scores[1:6] if len(sim_scores) > 1 else []
+    
+    # Obtener los índices de las películas recomendadas
+    movie_indices = [i[0] for i in sim_scores]
+
+    # ✅ Devolver las recomendaciones en formato JSON
+    return json.dumps({"recommendations": movies['title'].iloc[movie_indices].tolist()})
+
+# testeo
+print(get_recommendations('The Matrix'))
+
+
+
+""" def get_recommendations(title, cosine_sim=cosine_sim):
     # Obtener el índice de la película seleccionada
     idx = movies.index[movies['title'] == title].tolist()
     
@@ -60,7 +93,4 @@ def get_recommendations(title, cosine_sim=cosine_sim):
     print(f"Índices de las películas más similares: {movie_indices}")
     
     # Devolver los títulos de las películas más similares
-    return movies['title'].iloc[movie_indices]
-
-# testeo
-print(get_recommendations('The Matrix'))
+    return movies['title'].iloc[movie_indices] """
