@@ -24,7 +24,7 @@ movies = pd.DataFrame({
 })
 
 
-# Convertir las descripciones en vectores numéricos
+# Convertir las descripciones en vectores de numeros
 tfidf = TfidfVectorizer(stop_words='english')  # Eliminar las palabras comunes
 tfidf_matrix = tfidf.fit_transform(movies['description']) 
 
