@@ -55,7 +55,7 @@ def get_recommendations(title, cosine_sim=cosine_sim):
     # Obtener los índices de las películas recomendadas
     movie_indices = [i[0] for i in sim_scores]
 
-    # ✅ Devolver las recomendaciones en formato JSON
+    # ✅ Devolver las recomendaciones en JSON
     return json.dumps({"recommendations": movies['title'].iloc[movie_indices].tolist()})
 
 # testeo
