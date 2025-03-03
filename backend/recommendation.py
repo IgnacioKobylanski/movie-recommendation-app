@@ -32,7 +32,7 @@ tfidf_matrix = tfidf.fit_transform(movies['description'])
 cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
 def get_recommendations(title, cosine_sim=cosine_sim):
-    # ✅ Verificar si hay películas en la base de datos
+    # ✅ Verificar si la base de datos no esta vacia
     if movies.empty:
         return json.dumps({"error": "❌ La base de datos de películas está vacía."})
     
