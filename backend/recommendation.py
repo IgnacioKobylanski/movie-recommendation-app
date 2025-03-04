@@ -1,65 +1,74 @@
-import pandas as pd
+import mysql.connector
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Datos de ejemplo de películas
-movies = pd.DataFrame({
-    'title': ['The Matrix', 'Interstellar', 'The Dark Knight', 'Inception', 'The Godfather',
-              'Avatar', 'Titanic', 'The Avengers', 'Forrest Gump', 'Joker'],
-    'genre': ['Sci-Fi, Action', 'Sci-Fi, Drama', 'Action, Drama', 'Sci-Fi, Action', 'Drama, Crime',
-              'Sci-Fi, Adventure', 'Romance, Drama', 'Action, Superhero', 'Drama', 'Drama, Crime'],
-    'description': [
-        'A man discovers that the world is a simulation.',
-        'A group of astronauts travels through a wormhole to save Earth.',
-        'A vigilante fights crime in Gotham City.',
-        'A thief enters the dreams of others to steal secrets.',
-        'The story of a mafia family in New York.',
-        'A marine on an alien planet fights for its people.',
-        'A tragic love story aboard a sinking ship.',
-        'Superheroes unite to save the world.',
-        'A man with a low IQ achieves great things in life.',
-        'A failed comedian turns to crime in Gotham City.'
-    ]
-})
+# Conexión a la base de datos MySQL
+import mysql.connector
+
+def get_db_connection():
+    return mysql.connector.connect(
+        host="localhost",  
+        user="root",
+        password="root",
+        database="movie_recommendation"
+    )
 
 
-# Convertir las descripciones en vectores de numeros
-tfidf = TfidfVectorizer(stop_words='english')  # Eliminar las palabras comunes
-tfidf_matrix = tfidf.fit_transform(movies['description']) 
+# Función para obtener las películas desde MySQL
+def get_movies_from_db():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    cursor.execute("SELECT title, genre, description FROM movies")
+    movies = cursor.fetchall()
+    
+    conn.close()
+    
+    return movies
 
-# Calcular la similitud de coseno entre las películas
-cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
-
-def get_recommendations(title, cosine_sim=cosine_sim):
-    # ✅ Verificar si la base de datos no esta vacia
-    if movies.empty:
+# Convertir las descripciones en vectores de números
+def get_recommendations(title):
+    movies = get_movies_from_db()
+    
+    # Si la base de datos está vacía
+    if not movies:
         return json.dumps({"error": "❌ La base de datos de películas está vacía."})
     
-    # ✅ Verificar si la película existe en la base de datos
-    idx = movies.index[movies['title'] == title].tolist()
-    if not idx:
+    # Verificar si la película existe
+    movie_titles = [movie['title'] for movie in movies]
+    if title not in movie_titles:
         return json.dumps({"error": f"❌ La película '{title}' no está en la base de datos."})
     
-    idx = idx[0]  # Obtener el primer índice válido
+    # Obtener la descripción de la película seleccionada
+    movie = next(movie for movie in movies if movie['title'] == title)
+    descriptions = [movie['description'] for movie in movies]
     
-    # ✅ Obtener las puntuaciones de similitud
-    sim_scores = list(enumerate(cosine_sim[idx]))
+    # Convertir las descripciones en vectores numéricos
+    tfidf = TfidfVectorizer(stop_words='english')
+    tfidf_matrix = tfidf.fit_transform(descriptions)
+    
+    # Calcular la similitud de coseno entre las películas
+    idx = movie_titles.index(title)
+    cosine_sim = cosine_similarity(tfidf_matrix[idx], tfidf_matrix)
+    
+    # Obtener las puntuaciones de similitud entre la película seleccionada y todas las demás
+    sim_scores = list(enumerate(cosine_sim[0]))
     
     # Ordenar las películas por similitud (más alta primero)
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     
-    # ✅ Evitar errores si hay menos de 5 películas en la base de datos
+    # Evitar errores si hay menos de 5 películas
     sim_scores = sim_scores[1:6] if len(sim_scores) > 1 else []
     
     # Obtener los índices de las películas recomendadas
     movie_indices = [i[0] for i in sim_scores]
+    
+    # Devolver las recomendaciones en formato JSON
+    recommendations = [movies[i]['title'] for i in movie_indices]
+    
+    return json.dumps({"recommendations": recommendations})
 
-    # ✅ Devolver las recomendaciones en JSON
-    return json.dumps({"recommendations": movies['title'].iloc[movie_indices].tolist()})
-
-# testeo
+# Prueba de la función
 print(get_recommendations('The Matrix'))
-
-
 
