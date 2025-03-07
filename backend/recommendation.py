@@ -51,7 +51,7 @@ def get_recommendations(title):
     # Obtener las puntuaciones de similitud entre la película seleccionada y todas las demás
     sim_scores = list(enumerate(cosine_sim[0]))
     
-    # Ordenar las películas por similitud (más alta primero)
+    # Ordenar las películas por similitud (de alta a mas baja)
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     
     # Evitar errores si hay menos de 5 películas
