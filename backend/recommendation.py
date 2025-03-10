@@ -11,7 +11,7 @@ def get_db_connection():
         database="movie_recommendation"
     )
 
-# Función para obtener las películas desde MySQL
+# Función para obtener las películas de la bbdd
 def get_movies_from_db():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
