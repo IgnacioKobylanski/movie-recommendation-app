@@ -142,7 +142,4 @@ def get_recommendations(title):
     
     return json.dumps({"recommendations": recommendations})
 
-# Prueba de la función
-print(get_recommendations('The Matrix'))
-
  """
