@@ -88,7 +88,7 @@ def get_db_connection():
     )
 
 
-# Función para obtener las películas desde MySQL
+
 def get_movies_from_db():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
