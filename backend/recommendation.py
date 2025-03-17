@@ -51,7 +51,7 @@ def get_recommendations(title):
     tfidf_matrix = tfidf.fit_transform(descriptions)
     
     # Calcular la similitud de coseno entre la película seleccionada y las demás
-    idx = movie_titles.index(title.lower())  # Se asegura que se use minúsculas al buscar el índice
+    idx = movie_titles.index(title.lower()) 
     cosine_sim = cosine_similarity(tfidf_matrix[idx], tfidf_matrix)
     
     # Obtener las puntuaciones de similitud entre la película seleccionada y todas las demás
