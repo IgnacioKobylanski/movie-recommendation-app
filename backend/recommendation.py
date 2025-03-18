@@ -2,7 +2,7 @@ import mysql.connector
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Conexión a la base de datos MySQL
+# Conexion con MySQL
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",  
