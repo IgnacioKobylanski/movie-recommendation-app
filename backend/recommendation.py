@@ -42,7 +42,7 @@ def get_recommendations(title):
     # Imprimir la lista de títulos de películas para depuración
     print("Películas en la base de datos:", movie_titles)  # Verifica qué películas hay en la base de datos
     
-    # Obtener la descripción de la película seleccionada
+    # Obtener la descripción de la película
     movie = next(movie for movie in movies if movie['title'].lower() == title.lower())  # Asegúrate de que no haya problemas con mayúsculas
     descriptions = [movie['description'] for movie in movies]
     
