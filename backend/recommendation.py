@@ -28,7 +28,7 @@ def get_recommendations(title):
     # Obtener todas las películas de la base de datos
     movies = get_movies_from_db()
     
-    # Si no hay películas en la base de datos, devolver un error
+    # Si no hay películas en la base de datos, devolver un error.
     if not movies:
         return {"error": "❌ La base de datos de películas está vacía."}
     
