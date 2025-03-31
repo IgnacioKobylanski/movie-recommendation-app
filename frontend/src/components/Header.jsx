@@ -2,8 +2,8 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="bg-blue-600 text-white p-4">
-      <h1 className="text-2xl font-bold">Movie Recommendation App</h1>
+    <header className="header-main">
+      <h1 className="header-title">Movie Recommendation App</h1>
     </header>
   );
 };
