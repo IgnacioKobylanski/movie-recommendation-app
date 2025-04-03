@@ -2,3 +2,4 @@ myenv/
 node_modules/
 *.pyc
 __pycache__/
+TODO.txt
