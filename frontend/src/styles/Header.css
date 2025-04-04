@@ -7,11 +7,104 @@
 }
 
 .header {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--darkGray);
+  min-height: 10vh;
+  color: var(--lightGray); /* Corrección del error */
+  font-family: "EB Garamond", serif;
+  padding: 0 2rem; /* Añadimos un poco de espacio a los lados */
+}
+
+/* Estilos del logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo img {
+  width: 7rem;
+  height: auto;
+}
+
+/* Estilos del nav */
+.header-nav {
+  margin-right: 1rem;
+}
+
+.header-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-nav ul li a {
+  text-decoration: none;
+  color: var(--lightGray);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto hover */
+.header-nav ul li a:hover {
+  background-color: var(--mediumGray);
+  color: white;
+}
+
+/* Responsive: Móviles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+:root {
+  --lightGray: #a4a49c;
+  --mediumGray: #3d3c3e; 
+  --darkGray: #333;
+}
+
+.header {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--darkGray);
     min-height: 10vh;
     color:var(--lihgtGray);
     font-family: "EB Garamond", serif;
   }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem; 
+    height: auto; 
+    gap: 1rem;
+  }
+  .header-nav{
+    margin-right: 2rem;
+    display: flex;
+  } */
