@@ -14,12 +14,11 @@
   align-items: center;
   background-color: var(--darkGray);
   min-height: 10vh;
-  color: var(--lightGray); /* Corrección del error */
+  color: var(--lightGray);
   font-family: "EB Garamond", serif;
-  padding: 0 2rem; /* Añadimos un poco de espacio a los lados */
+  padding: 0 2rem;
 }
 
-/* Estilos del logo */
 .logo {
   display: flex;
   align-items: center;
@@ -31,7 +30,6 @@
   height: auto;
 }
 
-/* Estilos del nav */
 .header-nav {
   margin-right: 1rem;
 }
@@ -54,13 +52,13 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* Efecto hover */
+
 .header-nav ul li a:hover {
   background-color: var(--mediumGray);
   color: white;
 }
 
-/* Responsive: Móviles */
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
