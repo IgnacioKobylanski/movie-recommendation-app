@@ -24,14 +24,16 @@ function Main() {
 
   return (
     <div className="main-content">
-      <h1>Recomendaciones de Películas</h1>
+      <h1>Find your new favorite movie!</h1>
+      <div className="buttons-main">
       <input
         type="text"
-        placeholder="Ingresa un título de película"
+        placeholder="Enter a movie title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button onClick={getRecommendations}>Obtener Recomendaciones</button>
+      <button onClick={getRecommendations}>Get Recomendations</button>
+      </div>
       {error && <p>{error}</p>}
       {recommendations.length > 0 && (
         <ul>
