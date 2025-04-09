@@ -70,39 +70,3 @@
     gap: 1rem;
   }
 }
-
-
-
-
-/* @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
-
-:root {
-  --lightGray: #a4a49c;
-  --mediumGray: #3d3c3e; 
-  --darkGray: #333;
-}
-
-.header {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--darkGray);
-    min-height: 10vh;
-    color:var(--lihgtGray);
-    font-family: "EB Garamond", serif;
-  }
-
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 7rem; 
-    height: auto; 
-    gap: 1rem;
-  }
-  .header-nav{
-    margin-right: 2rem;
-    display: flex;
-  } */
