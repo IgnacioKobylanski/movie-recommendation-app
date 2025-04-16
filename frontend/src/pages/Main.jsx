@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import "../styles/Main.css"
+import MovieCard from '../components/MovieCard';
 
 function Main() {
   const [title, setTitle] = useState('');
-  const [recommendations, setRecommendations] = useState([]);
+  const [recommendations, setRecommendations] = useState([{
+    name: "The Shawshank Redemption",
+    imageUrl: "https://example.com/shawshank.jpg",
+  }]);
+  
   const [error, setError] = useState('');
 
   const getRecommendations = async () => {
@@ -38,7 +43,13 @@ function Main() {
       {recommendations.length > 0 && (
         <ul>
           {recommendations.map((movie, index) => (
-            <li key={index}>{movie}</li>
+           /*  <li key={index}>{movie}</li> */ <MovieCard
+              key={index}
+              movieInfo={{
+                name: movie.name,
+                imageUrl: "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              }}
+            />
           ))}
         </ul>
       )}
