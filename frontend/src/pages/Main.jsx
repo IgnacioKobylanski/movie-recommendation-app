@@ -43,7 +43,7 @@ function Main() {
       {recommendations.length > 0 && (
         <ul>
           {recommendations.map((movie, index) => (
-           /*  <li key={index}>{movie}</li> */ <MovieCard
+            <MovieCard
               key={index}
               movieInfo={{
                 name: movie.name,

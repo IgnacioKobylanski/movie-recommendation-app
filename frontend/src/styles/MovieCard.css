@@ -4,6 +4,9 @@
     --darkGray: #333;
 }
 
+.movie-card-link {
+    text-decoration: none;
+}
 
 .movie-card-container {
     display: flex;
@@ -16,8 +19,18 @@
     color: var(--lightGray);
     flex-direction: column;
     align-items: center;
-    width: 20rem ; 
+    width: 12rem;
+    height: 22rem;
+    transition: transform 0.3s ease; 
+    cursor: pointer;
+    text-align: center;
+    justify-content: space-evenly;
 }
+
+.movie-card-container:hover {
+    transform: scale(1.05);
+}
+
 
 .movie-small-image {
     width: 100%; 
