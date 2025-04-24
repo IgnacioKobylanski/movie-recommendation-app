@@ -15,7 +15,7 @@ function MoviePage() {
       <h1 className="movie-title">{name}</h1>
       <img className="movie-image" src={imageUrl} alt={name} />
       <p className="movie-description">
-        Esta es una breve descripción de <strong>{name}</strong>. Pronto vamos a mostrar más info acá.
+        This is a description of <strong>{name}</strong>. We'll include more info soon!.
       </p>
     </div>
   );
