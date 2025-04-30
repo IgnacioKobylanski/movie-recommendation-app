@@ -41,7 +41,7 @@ function Main() {
       </div>
       {error && <p>{error}</p>}
       {recommendations.length > 0 && (
-        /*{ <ul>
+        <ul>
           {recommendations.map((movie, index) => (
             <MovieCard
               key={index}
@@ -51,7 +51,7 @@ function Main() {
               }}
             />
           ))}
-        </ul> }*/
+        </ul>
       )}
     </div>
   );

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS 
+from flask_cors import CORS
 from recommendation import get_recommendations
 
 app = Flask(__name__)
@@ -22,7 +22,8 @@ def recommendations():
         return jsonify(recommendations), 400
 
     # Si todo está bien, devolvemos las recomendaciones en formato JSON
-    return jsonify(recommendations)
+    # Devolvemos el diccionario con las películas recomendadas
+    return jsonify({"recommendations": recommendations["recommendations"]})
 
 if __name__ == '__main__':
     app.run(debug=True)
