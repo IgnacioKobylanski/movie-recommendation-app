@@ -43,13 +43,13 @@ function Main() {
       {recommendations.length > 0 && (
         <ul>
           {recommendations.map((movie, index) => (
-            {/* <MovieCard
+            <MovieCard
               key={index}
               movieInfo={{
-                name: movie.name,
+                name: movie,
                 imageUrl: "https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
               }}
-            /> */}
+            />
           ))}
         </ul>
       )}
