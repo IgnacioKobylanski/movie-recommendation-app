@@ -16,7 +16,7 @@ def get_movies_from_db():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     
-    # Asegúrate de seleccionar también la columna 'image_url' que contiene la URL de la imagen
+    # Seleccionar id, título, descripción e imagen de la película
     cursor.execute("SELECT id, title, genre, description, image_url FROM movies")
     movies = cursor.fetchall()
     
@@ -31,17 +31,17 @@ def get_recommendations(title):
     
     # Si no hay películas en la base de datos, devolver un error.
     if not movies:
-        return {"error": "❌ La base de datos de películas está vacía."}
+        return {"error": "❌ The databse is empty."}
     
     # Convertir los títulos a minúsculas para hacer la búsqueda insensible a mayúsculas
     movie_titles = [movie['title'].lower() for movie in movies]
     
     # Verificar si el título existe en la base de datos (sin tener en cuenta mayúsculas)
     if title.lower() not in movie_titles:
-        return {"error": f"❌ La película '{title}' no está en la base de datos."}
+        return {"error": f"❌ The movie: '{title}' is not in the database."}
     
     # Obtener la descripción de la película
-    movie = next(movie for movie in movies if movie['title'].lower() == title.lower())  # Asegúrate de que no haya problemas con mayúsculas
+    movie = next(movie for movie in movies if movie['title'].lower() == title.lower())
     descriptions = [movie['description'] for movie in movies]
     
     # Convertir las descripciones en vectores numéricos
@@ -66,12 +66,14 @@ def get_recommendations(title):
     
     # Crear una lista con los títulos de las películas recomendadas y sus respectivas URLs de imágenes
     recommendations = [{
-        "title": movies[i]['title'],
-        "image_url": movies[i]['image_url']
+        "name": movies[i]['title'],
+        "imageUrl": movies[i]['image_url'],
+        "description":movies[i]['description']
     } for i in movie_indices]
     
     # Devolver las recomendaciones en formato de diccionario
     return {"recommendations": recommendations}
+
 
 
 """ import mysql.connector

@@ -31,3 +31,7 @@
 .main-content h1{
     color: var(--lightGray);
 }
+
+.movie-card-list{
+    display: flex;
+}

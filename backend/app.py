@@ -1,58 +1,33 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from recommendation import get_recommendations
+from recommendation import get_recommendations  # Asegúrate de tener este archivo 'recommendation.py'
 
 app = Flask(__name__)
-CORS(app)  # Habilitar CORS
+CORS(app)  # Habilitar CORS para permitir que tu frontend pueda hacer peticiones al backend
 
 @app.route('/recommendations', methods=['GET'])
 def recommendations():
     # Obtener el parámetro 'title' desde la URL
     title = request.args.get('title')
 
-    if not title:
-        # Si no hay título, devuelve un error
-        return jsonify({"error": "Por favor, proporciona un título de película usando el parámetro 'title' en la URL."}), 400
+    # Validar que el título no esté vacío o solo con espacios
+    if not title or title.strip() == "":
+        return jsonify({"error": "El título de la película no puede estar vacío."}), 400
 
-    # Obtener las recomendaciones llamando a la función get_recommendations
-    recommendations = get_recommendations(title)
+    try:
+        # Obtener las recomendaciones llamando a la función get_recommendations
+        recommendations = get_recommendations(title)
 
-    # Verificar si la función devuelve un mensaje de error (en caso de no encontrar la película)
-    if "error" in recommendations:
-        return jsonify(recommendations), 400
+        # Verificar si la función devuelve un mensaje de error (en caso de no encontrar la película)
+        if "error" in recommendations:
+            return jsonify(recommendations), 400
 
-    # Si todo está bien, devolvemos las recomendaciones en formato JSON
-    # Devolvemos el diccionario con las películas recomendadas
-    return jsonify({"recommendations": recommendations["recommendations"]})
+        # Si todo está bien, devolvemos las recomendaciones en formato JSON
+        return jsonify({"recommendations": recommendations["recommendations"]})
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-""" from flask import Flask, request, jsonify
-from recommendation import get_recommendations
-
-app = Flask(__name__)
-# Pseudo Main
-@app.route('/recommendations')
-def recommendations():
-    # Obtener el parámetro 'title'
-    title = request.args.get('title')
-
-    if not title:
-        return "Por favor, proporciona un título de película usando el parámetro 'title' en la URL.", 400 #mensaje para el usuario
-    
-    # Obtener las recomendaciones seleccionadas
-    recommendations = get_recommendations(title)
-
-    # Verificar que la función devuelve.
-    if isinstance(recommendations, str):
-        return recommendations  # En caso de que sea un mensaje de error
-
-    # Convertir el resultado a una lista y devolverlo como JSON
-    return jsonify(recommendations.tolist())  # Usamos .tolist() para convertir el Series a lista
+    except Exception as e:
+        # Si ocurre un error inesperado, devolvemos un mensaje de error general
+        return jsonify({"error": str(e)}), 500  # Error interno del servidor
 
 if __name__ == '__main__':
     app.run(debug=True)
- """

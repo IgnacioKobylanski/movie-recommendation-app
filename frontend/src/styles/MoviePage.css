@@ -15,14 +15,14 @@
     text-align: center;
     overflow-x: hidden;
   }
-  
+   
   .movie-page-container h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
   }
-  
+   
   .movie-page-container img {
-    width: 300px;
+    width: 50rem;
     height: auto;
     object-fit: cover;
     border-radius: 0.5rem;
