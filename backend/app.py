@@ -22,12 +22,10 @@ def recommendations():
         if "error" in recommendations:
             return jsonify(recommendations), 400
 
-        # Si todo está bien, devolvemos las recomendaciones en formato JSON
         return jsonify({"recommendations": recommendations["recommendations"]})
 
     except Exception as e:
-        # Si ocurre un error inesperado, devolvemos un mensaje de error general
-        return jsonify({"error": str(e)}), 500  # Error interno del servidor
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
