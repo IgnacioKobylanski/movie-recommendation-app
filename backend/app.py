@@ -3,7 +3,7 @@ from flask_cors import CORS
 from recommendation import get_recommendations  # Asegúrate de tener este archivo 'recommendation.py'
 
 app = Flask(__name__)
-CORS(app)  # Habilitar CORS para permitir que tu frontend pueda hacer peticiones al backend
+CORS(app)  # Habilitar CORS
 
 @app.route('/recommendations', methods=['GET'])
 def recommendations():
